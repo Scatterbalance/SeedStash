@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 // or even care what the redux state is
 
 
-function InfoPage() {
+function AddSeedPage() {
 
 
 
@@ -30,10 +30,10 @@ function InfoPage() {
 
   return (
     <div className="container">
-      <p>Info Page</p>
+      <p>Add seed Page</p>
       <p>{JSON.stringify(inventory)}</p>
     </div>
   );
 }
 
-export default InfoPage;
+export default AddSeedPage;

@@ -28,6 +28,14 @@ function Nav() {
               Home
             </Link>
 
+            <Link className="navLink" to="/inventory">
+              Inventory Page
+            </Link>
+
+            <Link className="navLink" to="/AddSeedPage">
+              Add Seed Page
+            </Link>
+
             <Link className="navLink" to="/info">
               Info Page
             </Link>
