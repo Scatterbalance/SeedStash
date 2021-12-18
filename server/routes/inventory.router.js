@@ -22,6 +22,23 @@ const router = express.Router();
 
 });
 
+router.get('/catagories', (req, res) => {
+
+  const query = 
+  `SELECT * FROM seeds`;
+  pool.query(query)
+    .then( result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get seeds', err);
+      res.sendStatus(500)
+    })
+
+});
+
+
+
 /**
  * POST route template
  */
