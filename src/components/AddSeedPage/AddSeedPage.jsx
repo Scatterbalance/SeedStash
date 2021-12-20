@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-
+import AddSeedForm from '../AddSeedForm/AddSeedForm';
 
 
 // This is one of our simplest components
@@ -32,8 +32,10 @@ function AddSeedPage() {
   return (
     <div className="container">
       <p>Add seed Page</p>
+
       
       <p>{JSON.stringify(catagories)}</p>
+      <AddSeedForm />
     </div>
   );
 }
