@@ -14,13 +14,14 @@ function InventoryPage() {
 
 
   const inventory = useSelector((store) => store.inventory);
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   
 
 
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_INVENTORY' });
+    dispatch({ type: 'FETCH_INVENTORY', payload: user.id });
     
   }, []);
 

@@ -4,7 +4,7 @@ import axios from 'axios';
 function* fetchInventory (action) {
     // get details from the DB
     try {
-        const inventory = yield axios.get(`/api/inventory/`, action.payload);
+        const inventory = yield axios.get(`/api/inventory/${action.payload}`);
         console.log('get:', inventory.data);
         yield put({ type: 'SET_INVENTORY', payload: inventory.data});
        

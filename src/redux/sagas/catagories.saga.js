@@ -4,7 +4,7 @@ import axios from 'axios';
 function* fetchCatagories (action) {
     // get details from the DB
     try {
-        const catagory = yield axios.get(`/api/inventory/catagories`, action.payload);
+        const catagory = yield axios.get(`/api/catagories/`);
         console.log('get:', catagory.data);
         yield put({ type: 'SET_CATAGORIES', payload: catagory.data});
        

@@ -5,12 +5,13 @@ const router = express.Router();
 /**
  * GET route template
  */
- router.get('/', (req, res) => {
+ router.get('/:id', (req, res) => {
+   console.log(req.params.id);
 
   const query = 
-  `SELECT first_name, last_name, catagory, name, source, notes FROM inventory
+  `SELECT inventory.id, catagory, name, quantity, expiration, indoor, current_year, notes FROM inventory
   JOIN seeds ON inventory.seed_id = seeds.id
-  JOIN "user" ON inventory.user_id = "user".id;`;
+  WHERE user_id=${req.params.id};`;
   pool.query(query)
     .then( result => {
       res.send(result.rows);
@@ -21,22 +22,6 @@ const router = express.Router();
     })
 
 });
-
-router.get('/catagories', (req, res) => {
-
-  const query = 
-  `SELECT * FROM seeds`;
-  pool.query(query)
-    .then( result => {
-      res.send(result.rows);
-    })
-    .catch(err => {
-      console.log('ERROR: Get seeds', err);
-      res.sendStatus(500)
-    })
-
-});
-
 
 
 /**
