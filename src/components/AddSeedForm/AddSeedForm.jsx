@@ -1,6 +1,6 @@
 import {React} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import {useLayoutEffect, useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import {Select,InputLabel, MenuItem, Button} from '@material-ui/core';
 
@@ -20,23 +20,6 @@ function AddSeedForm(props) {
   const dispatch = useDispatch();
 
 
-  // set on page load
-  useEffect(() => {
-
-    SetCatagoriesList(
-     catagories.map(catagory => {
-     return (<MenuItem key = {catagory.id} value = {catagory.id}>{catagory.catagory}</MenuItem>);
-     }))
-    
-    
-    
-    }, []);
-
-//list of catagories
-const [catagoriesList, SetCatagoriesList] = useState('');
-//date
-
-
   
 //defining object to send
   const [newSeed, setNewSeed] = useState( {
@@ -44,7 +27,7 @@ const [catagoriesList, SetCatagoriesList] = useState('');
     user_id: user.id,
     name: '',
     expiration: '',
-    quantity: '',
+    quantity: 0,
     source: '',
     current_year: false,
     indoor: false,
@@ -54,14 +37,6 @@ const [catagoriesList, SetCatagoriesList] = useState('');
 const handleChangeCatagory = (event)=>{
    setNewSeed ({...newSeed , seed_id: event.target.value});
 }
-const handleChange = (event) => {
-    setNewSeed ({...newSeed , indoor: event.target.checked});
-}
-
-
-
-
-
 
 
 
@@ -80,7 +55,8 @@ const handleChange = (event) => {
               label="Catagory"
               value = {newSeed.seed_id}
               onChange={handleChangeCatagory}>
-                {catagoriesList}
+                {catagories.map(catagory =>
+                <MenuItem key = {catagory.id} value = {catagory.id}>{catagory.catagory}</MenuItem>)}
             </Select>
       </h4>
 
@@ -111,7 +87,7 @@ const handleChange = (event) => {
       <h4>notes: <input type = "text" placeholder = "notes" onChange = { (event)=>setNewSeed ({...newSeed , notes: event.target.value})} /></h4>
 
       <Button variant="outlined" >Cancel</Button>
-      <Button variant="outlined">Submit</Button>
+      <Button variant="outlined" onClick= {()=>{dispatch({type:"ADD_INVENTORY" ,payload:newSeed})}}>Submit</Button>
       
       <p>{JSON.stringify(newSeed)}</p>
 

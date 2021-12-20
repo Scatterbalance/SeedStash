@@ -43,7 +43,18 @@ router.get('/catagories', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  // POST route code here
+  
+    const queryString = ` INSERT INTO "inventory" (seed_id, indoor, expiration, notes, current_year, quantity, user_id, name, source )
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
+    values = [ req.body.seed_id, req.body.indoor, req.body.expiration, req.body.notes, req.body.current_year, req.body.quantity, req.body.user_id, req.body.name, req.body.source ];
+    pool.query( queryString, values).then( (results)=>{
+      res.sendStatus( 200 );
+    }).catch( (err)=>{
+      console.log( err );
+      res.sendStatus( 500 );
+    })
+  
+  
 });
 
 module.exports = router;
