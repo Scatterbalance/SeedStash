@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {useLayoutEffect, useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import {Select,InputLabel, MenuItem, Button} from '@material-ui/core';
+import {useHistory} from 'react-router'
 
 
 
@@ -18,6 +19,7 @@ function AddSeedForm(props) {
   const user = useSelector((store) => store.user);
   
   const dispatch = useDispatch();
+  const history = useHistory();
 
 
   
@@ -86,7 +88,7 @@ const handleChangeCatagory = (event)=>{
 
       <h4>notes: <input type = "text" placeholder = "notes" onChange = { (event)=>setNewSeed ({...newSeed , notes: event.target.value})} /></h4>
 
-      <Button variant="outlined" >Cancel</Button>
+      <Button variant="outlined" onClick={()=>{history.goBack()}} >Cancel</Button>
       <Button variant="outlined" onClick= {()=>{dispatch({type:"ADD_INVENTORY" ,payload:newSeed})}}>Submit</Button>
       
       <p>{JSON.stringify(newSeed)}</p>
