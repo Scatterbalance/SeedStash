@@ -20,6 +20,26 @@ const router = express.Router();
 
 });
 
+
+router.get('/:id', (req, res) => {
+
+  const query = 
+  `SELECT  seeds.id, catagory FROM inventory
+  JOIN seeds ON inventory.seed_id = seeds.id
+  WHERE user_id=${req.params.id}
+  GROUP BY seeds.id
+  ORDER BY catagory ASC;`;
+  pool.query(query)
+    .then( result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get seeds', err);
+      res.sendStatus(500)
+    })
+
+});
+
 /**
  * POST route template
  */

@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import inventory from './inventory.reducer';
 import catagories from './catagories.reducer';
+import userCatagories from './userCatagories.reducer'
 
 
 // rootReducer is the primary reducer for our entire project
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   inventory, // contain inventory items
   catagories, //contains seeds catagories
+  userCatagories, //contains catagories each user has during session
   
 
 });
