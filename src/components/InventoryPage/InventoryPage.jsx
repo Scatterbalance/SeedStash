@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import InventoryTopList from '../InventoryTopList/InventoryTopList';
+import {Table, TableBody, TableCell, TableContainer, TableHead,TableRow,Paper} from '@material-ui/core' 
 
 
 // This is one of our simplest components

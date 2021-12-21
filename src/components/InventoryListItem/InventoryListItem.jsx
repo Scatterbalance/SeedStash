@@ -1,4 +1,5 @@
 import React from 'react';
+import {Table, TableBody, TableCell, TableContainer, TableHead,TableRow,Paper} from '@material-ui/core' 
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -10,7 +11,9 @@ function InventoryListItem(props) {
     <div className="container">
       <div>
         <section>{JSON.stringify(props.inventory)}</section>
-        <p>{props.inventory.name},{props.inventory.quantity}</p>
+        <p>{props.inventory.name}  Qty:{props.inventory.quantity}  Expiration year:{props.inventory.expiration}</p>
+        
+
       </div>
     </div>
   );
