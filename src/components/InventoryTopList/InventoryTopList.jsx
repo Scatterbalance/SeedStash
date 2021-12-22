@@ -58,7 +58,7 @@ function InventoryTopList(props) {
               <TableCell align="right">{inventory.quantity}<button>button</button></TableCell>
               <TableCell align="right">{inventory.expiration}</TableCell>
               <TableCell align="right">
-                <IconButton aria-label="delete" size="small">
+                <IconButton  onClick = {()=>dispatch({type: "DELETE_INVENTORY" ,payload: {id: inventory.id, user_id: user.id}})} aria-label="delete" size="small">
                   <DeleteIcon fontSize="small" />
                 </IconButton>
               </TableCell>

@@ -37,7 +37,7 @@ function InventoryPage() {
   return (
     <div className="container">
       <p>Inventory Page</p>
-      <p>{JSON.stringify(inventory)}</p>
+      {/* <p>{JSON.stringify(inventory)}</p> */}
       <section className="inventory">
           {userCatagories.map(catagory => {
           return (

@@ -6,6 +6,7 @@ import inventorySaga from './inventory.saga';
 import catagoriesSaga from './catagories.saga';
 import addInventory from './addSeed.saga';
 import userCatagories from './userCatagories.saga';
+import deleteSeed from './delete.inventory.saga';
 
 
 // rootSaga is the primary saga.
@@ -24,6 +25,7 @@ export default function* rootSaga() {
     catagoriesSaga(),
     addInventory(),
     userCatagories(),
+    deleteSeed(),
   
   ]);
 }

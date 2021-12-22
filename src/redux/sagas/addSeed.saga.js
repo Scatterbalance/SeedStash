@@ -4,9 +4,10 @@ import axios from 'axios';
 function* addSeed (action) {
     // post route to server
     try {
+        
         const newSeed = yield axios.post(`/api/inventory/`, action.payload);
         console.log('post:', newSeed.data);
-        yield put({ type: 'FETCH_INVENTORY'});
+        yield put({ type: 'FETCH_INVENTORY', payload: action.payload.user_id});
        
     } catch {
         console.log('post inventory error');

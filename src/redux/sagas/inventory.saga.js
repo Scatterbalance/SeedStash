@@ -1,6 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+
+
+
 function* fetchInventory (action) {
     // get details from the DB
     try {

@@ -9,7 +9,7 @@ const router = express.Router();
    console.log(req.params.id);
 
   const query = 
-  `SELECT inventory.id, catagory, name, quantity, expiration, indoor, current_year, notes FROM inventory
+  `SELECT inventory.id, catagory, name, quantity, expiration, indoor, current_year, user_id, notes FROM inventory
   JOIN seeds ON inventory.seed_id = seeds.id
   WHERE user_id=${req.params.id};`;
   pool.query(query)
@@ -41,5 +41,19 @@ router.post('/', (req, res) => {
   
   
 });
+
+router.delete('/:id', (req, res) => {
+console.log(req.params.id );
+
+  const queryString = `DELETE FROM inventory WHERE id=$1`;
+  values = [ req.params.id ];
+  pool.query( queryString, values).then( (results)=>{
+    res.sendStatus( 200 );
+  }).catch( (err)=>{
+    console.log( err );
+    res.sendStatus( 500 );
+  })
+});
+
 
 module.exports = router;
