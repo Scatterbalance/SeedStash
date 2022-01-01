@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import InventoryListItem from '../InventoryListItem/InventoryListItem';
-import {Button, Table, TableBody, TableCell, TableContainer, TableHead,TableRow,Paper, IconButton } from '@material-ui/core' ;
+import {Button, Table, TableBody, TableCell, TableContainer, TableHead,TableRow,Paper, IconButton,Box, InputLabel, Select, MenuItem } from '@material-ui/core' ;
+import {Grid, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Collapse} from '@material-ui/core';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { Link as RouterLink } from 'react-router-dom';
+import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
+import SeedInfoPage from '../SeedInfoPage/SeedInfoPage';
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -16,80 +21,104 @@ function InventoryTopList(props) {
 
   const inventory = useSelector((store) => store.inventory);
   const user = useSelector((store) => store.user);
+  const catagories = useSelector((store) => store.catagories);
   const dispatch = useDispatch();
-  
 
   useEffect(() => {
     
   }, []);
+ //accordian 
+ const [toggleItem, setToggleItem] = useState( false );
+ 
 
-  const [toggleItem, setToggleItem] = useState( false );
+
+
+
 
 
   return (
     <div className="container">
-      <div>
-        <h3>{props.catagory.catagory}</h3>
+      
+
+          
         
-        {
-          toggleItem ?
-          <div>
-        <Button onClick = {()=>{setToggleItem(!toggleItem)}} >Collapse</Button>
-        <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Plant Name</TableCell>
-            <TableCell align="right">Qty</TableCell>
-            <TableCell align="right">Expiration Year</TableCell>
+       
+
+        
+
+         
+
+
+
+          <TableContainer component={Paper}>
+          <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+            <TableCell>
+              <IconButton
+                aria-label="expand row"
+                size="small"
+                onClick={() => setToggleItem(!toggleItem)}
+               >
+                {toggleItem ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+              </IconButton>
+            </TableCell>
+            <TableCell component="th" scope="row" >
+            <h3>{props.catagory.catagory}</h3>
+            </TableCell>
+            
+            
           </TableRow>
-        </TableHead>
-        <TableBody>
-          {inventory.map((inventory)=>{
-            if (inventory.catagory === props.catagory.catagory){
-              return(
-            <TableRow
-              key={inventory.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {inventory.name}
-              </TableCell>
-              <TableCell align="right">{inventory.quantity}<button>button</button></TableCell>
-              <TableCell align="right">{inventory.expiration}</TableCell>
-              <TableCell align="right">
-                <IconButton  onClick = {()=>dispatch({type: "DELETE_INVENTORY" ,payload: {id: inventory.id, user_id: user.id}})} aria-label="delete" size="small">
-                  <DeleteIcon fontSize="small" />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          )}//end if
-          } 
-          )//end map 
-          }
-        </TableBody>
-      </Table>
-    </TableContainer>
+          <TableRow>
+            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan = {6}>
+              <Collapse in={toggleItem} timeout="auto" unmountOnExit>
+                <Box sx={{ margin: 1 }}>
+                  
+                
+
+
+                  <Table  sx={{ minWidth: 250 }} size="small"  aria-label="a dense table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Plant Name</TableCell>
+                        <TableCell align="right">Qty</TableCell>
+                        <TableCell align="right">Expiration Year</TableCell>
+                        <TableCell align="right">view more</TableCell>
+                        <TableCell align="right"></TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {inventory.map((inventory)=>{
+                        if (inventory.catagory === props.catagory.catagory){
+                          
+                          
+                          return(<SeedInfoPage key = {inventory.id} inventory= {inventory} />
+                      
+                        
+                      )}//end if
+                      } 
+                      )//end map 
+                      }
+                      
+    
+                    </TableBody>
+                  </Table>
+                  
+                </Box>
+              </Collapse>
+            </TableCell>
+            
+
+
+          </TableRow>
+          </TableContainer>
   
         
         
-        {/* <section>{inventory.map(inventory=>{
-          if (inventory.catagory === props.catagory.catagory){
-            return(
-
-              
-            
-              <InventoryListItem  key={inventory.id} inventory={inventory}/>
-            )
-          }
-        })}</section> */}
-        </div>: 
-        
-        <Button onClick = {()=>{setToggleItem(!toggleItem)}}>Expand</Button>
-      }
         
       </div>
-    </div>
+     
+        
+      
+    
   );
 }
 

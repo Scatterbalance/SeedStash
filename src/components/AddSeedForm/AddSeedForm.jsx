@@ -89,7 +89,7 @@ const handleChangeCatagory = (event)=>{
       <h4>notes: <input type = "text" placeholder = "notes" onChange = { (event)=>setNewSeed ({...newSeed , notes: event.target.value})} /></h4>
 
       <Button variant="outlined" onClick={()=>{history.goBack()}} >Cancel</Button>
-      <Button variant="outlined" onClick= {()=>{dispatch({type:"ADD_INVENTORY" ,payload:newSeed})}}>Submit</Button>
+      <Button variant="outlined" onClick= {()=>{dispatch({type:"ADD_INVENTORY" ,payload:newSeed}); history.goBack();}}>Submit</Button>
       
       <p>{JSON.stringify(newSeed)}</p>
 
