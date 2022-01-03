@@ -40,6 +40,10 @@ function Nav() {
               Info Page
             </Link>
 
+            <Link className="navLink" to="/current">
+              Current Year
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}

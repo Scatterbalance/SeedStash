@@ -39,6 +39,7 @@ function InventoryTopList(props) {
   return (
     <div className="container">
       
+      <p>{JSON.stringify(props.inventory)}</p>
 
           
         
