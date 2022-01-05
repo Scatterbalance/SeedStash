@@ -25,19 +25,18 @@ function CurrentYearPage() {
   const userCatagories = useSelector((store) => store.userCatagories);
   const dispatch = useDispatch();
  
+  
+  
+  //search bar logic
   const [filtered, setFiltered] = useState(inventory);
   
-console.log('filteredInventory:', filtered);
-
-
-
-const [searchText, setSearchText] = React.useState('');
+  const [searchText, setSearchText] = React.useState('');
   const [rows, setRows] = React.useState(inventory);
 
   const requestSearch = (searchValue) => {
     setSearchText(searchValue);
     const searchRegex = new RegExp(escapeRegExp(searchValue), 'i');
-    const filteredRows = inventory.filter((row) => {
+    const filteredRows = rows.filter((row) => {
       return Object.keys(row).some((field) => {
         return searchRegex.test(row[field].toString());
       });
@@ -48,6 +47,7 @@ const [searchText, setSearchText] = React.useState('');
 const escapeRegExp=(value)=> {
     return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
   }
+  //end search bar logic
   
 
   useEffect(() => {
@@ -60,19 +60,35 @@ const escapeRegExp=(value)=> {
   }, []);
 
   useLayoutEffect(() => {
-  
   setFiltered(inventory);
-   
-
-    
+  setRows(inventory);
   }, [inventory]);
 
+  const [toggleCurrent, setToggleCurrent] = useState( false );
+  const [filter, setFilter] = useState( {
+    current_year: ''
+  } );
+
+ const hanldleCurrentYear=()=>{
+    if (filter.current_year===true){
+    setFilter({...filter,current_year:''})
+    }else if (filter.current_year===''){
+      setFilter({...filter,current_year: true})
+
+    }//end elseif
+
+  }
+  
 
 
   return (
     <div className="container">
       <p>Inventory Page</p>
       <input type = "text" placeholder = "search" onChange = {(event)=>requestSearch(event.target.value)} />
+      <button onClick = {hanldleCurrentYear}>current year</button>
+      <button onClick = {()=>{setFilter({...filter,current_year: ''})}}>all</button>
+      <button>expiring soon</button>
+      <p>{JSON.stringify(filter)}</p>
       <p>{JSON.stringify(filtered)}</p>
       <p>{JSON.stringify(inventory)}</p>
       <section className="inventory">
@@ -95,7 +111,7 @@ const escapeRegExp=(value)=> {
 
                 {/* <input placeholder="search" onChange= {filteredInventory}/> */}
 
-              <InventoryTopList catagory = {catagory} inventory={filtered}/>
+              <InventoryTopList key = {catagory.id} catagory = {catagory} inventory={filtered}/>
               </div>
             
             

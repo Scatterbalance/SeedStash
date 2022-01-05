@@ -10,6 +10,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { Link as RouterLink } from 'react-router-dom';
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
 import SeedInfoPage from '../InventoryList/InventoryList';
+import {Card, CardContent, CardMedia, Typography, CardActionArea} from '@material-ui/core'
+import '../InventoryTopList copy/InventoryTopList.css'
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -37,11 +39,31 @@ function InventoryTopList(props) {
 
 
   return (
-    <div className="container">
+    <div className = "container" className="card">
       
-      <p>{JSON.stringify(props.inventory)}</p>
+      {/* <p>{JSON.stringify(props.inventory)}</p> */}
 
-          
+      
+      <Card sx={{ maxWidth: 345 }}>
+        <CardActionArea component={RouterLink} to ={{ pathname:'/inventory/'+ props.catagory.id , state: props}}>
+          {/* <CardMedia
+            component="img"
+            height="140"
+            image="/static/images/cards/contemplative-reptile.jpg"
+            alt="green iguana"
+          /> */}
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+            {props.catagory.catagory}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Lizards are all over the place and this is going to test
+               the limit of how far they will spread.
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+      
         
        
 
@@ -51,7 +73,7 @@ function InventoryTopList(props) {
 
 
 
-          <TableContainer component={Paper}>
+          {/* <TableContainer component={Paper}>
           <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
             <TableCell>
               <IconButton
@@ -111,7 +133,7 @@ function InventoryTopList(props) {
 
 
           </TableRow>
-          </TableContainer>
+          </TableContainer> */}
   
         
         

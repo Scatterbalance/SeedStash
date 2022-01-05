@@ -24,6 +24,8 @@ import AddSeedPage from '../AddSeedPage/AddSeedPage';
 import CurrentYearPage from '../CurrentYearPage/CurrentYearPage';
 
 import './App.css';
+import InventoryList from '../InventoryList/InventoryList';
+import SeedInfoPage from '../SeedInfoPage/SeedInfoPage';
 
 
 function App() {
@@ -64,6 +66,23 @@ function App() {
           >
             <CurrentYearPage />
           </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/seedinfo/:id"
+          >
+            <SeedInfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/inventory/:id"
+          >
+            <InventoryList />
+          </ProtectedRoute>
+
 
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage

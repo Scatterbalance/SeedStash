@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import InventoryTopList from '../InventoryTopList/InventoryTopList';
+import { useEffect,useState } from 'react';
+import InventoryTopList from '../InventoryTopList copy/InventoryTopList';
 import {Button, Table, TableBody, TableCell, TableContainer, TableHead,TableRow,Paper, IconButton } from '@material-ui/core' ;
 import {Grid, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField} from '@material-ui/core';
 import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import '../InventoryTopList copy/InventoryTopList.css'
 
 
 // This is one of our simplest components
@@ -34,30 +35,22 @@ function InventoryPage() {
     dispatch({ type: 'FETCH_USER_CATAGORIES', payload: user.id });
     dispatch({ type: 'FETCH_CATAGORIES' });
 
+
     
   }, []);
 
-
+  const [catagoryList, setCatagoryList] = useState( {id: 0 ,catagory:"All"} );
+  
 
 
 
   return (
-    <div className="container">
-      <p>Inventory Page</p>
-      {/* <p>{JSON.stringify(inventory)}</p> */}
-      <section className="inventory">
-      
-        
-        
-
-
-
-
-
-
-
-        
-          {userCatagories.map(catagory => {
+    <div >
+      <h2>Inventory</h2>
+      <section className = "cardwrap">
+      <InventoryTopList catagory = {catagoryList}/>
+       
+      {userCatagories.map(catagory => {
           return (
             
 

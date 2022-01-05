@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 // or even care what the redux state is
 
 
-function InfoPage() {
+function InfoPage(props) {
 
 
 
@@ -30,6 +30,7 @@ function InfoPage() {
 
   return (
     <div className="container">
+      <p>{JSON.stringify(props)}</p>
       <p>Info Page</p>
       <p>{JSON.stringify(inventory)}</p>
     </div>
