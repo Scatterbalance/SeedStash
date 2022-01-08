@@ -10,7 +10,7 @@ import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
 import Checkbox from '@mui/material/Checkbox';
 import InventoryTopList from '../InventoryTopList/InventoryTopList';
 import InventoryListItem from '../InventoryListItem/InventoryListItem';
-import '../InventoryTopList copy/InventoryTopList.css'
+import '../InventoryList/InventoryList.css';
 
 //this function is for each individual seed item
 
@@ -97,7 +97,7 @@ useEffect(() => {
 <div className="container">
 <h3>seedinfopage</h3>
    
-<div className="cardwrap">
+<div className="cardwrap" className="cardItem">
   
   
   

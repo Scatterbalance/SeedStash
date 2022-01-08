@@ -41,25 +41,22 @@ function InventoryTopList(props) {
   return (
     <div className = "container" className="card">
       
-      {/* <p>{JSON.stringify(props.inventory)}</p> */}
+      {/* <p>{JSON.stringify(props.catagory)}</p> */}
 
       
       <Card sx={{ maxWidth: 345 }}>
         <CardActionArea component={RouterLink} to ={{ pathname:'/inventory/'+ props.catagory.id , state: props}}>
-          {/* <CardMedia
+          <CardMedia
             component="img"
             height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-            alt="green iguana"
-          /> */}
+            image = {props.catagory.path}
+            alt={props.catagory.catagory}
+          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
             {props.catagory.catagory}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are all over the place and this is going to test
-               the limit of how far they will spread.
-            </Typography>
+            
           </CardContent>
         </CardActionArea>
       </Card>

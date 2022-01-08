@@ -34,7 +34,7 @@ function AddSeedPage() {
       <p>Add seed Page</p>
 
       
-      <p>{JSON.stringify(catagories)}</p>
+      {/* <p>{JSON.stringify(catagories)}</p> */}
       <AddSeedForm />
     </div>
   );

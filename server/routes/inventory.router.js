@@ -9,7 +9,7 @@ const router = express.Router();
    console.log(req.params.id);
 
   const query = 
-  `SELECT inventory.id, catagory, name, quantity, expiration, indoor, current_year, user_id, notes, seed_id, source FROM inventory
+  `SELECT inventory.id, catagory, name, quantity, expiration, indoor, current_year, user_id, notes, seed_id, path, source FROM inventory
   JOIN seeds ON inventory.seed_id = seeds.id
   WHERE user_id=${req.params.id};`;
   pool.query(query)

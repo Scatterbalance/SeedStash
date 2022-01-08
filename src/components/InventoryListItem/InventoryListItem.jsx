@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import {Card, CardContent, CardMedia, Typography, CardActionArea} from '@material-ui/core'
+import {Card, CardContent, CardMedia, Typography, CardActionArea, Grid, Box} from '@material-ui/core'
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -9,30 +9,64 @@ import {Card, CardContent, CardMedia, Typography, CardActionArea} from '@materia
 // or even care what the redux state is'
 
 function InventoryListItem(props) {
+
+
+
   return (
 
 
-    <div className="container" className="card">
+    <div className="container" >
+
+
       <p>{JSON.stringify(props)}</p>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea component={RouterLink} to ={{ pathname:'/seedinfo/'+ props.inventory.id , state: props}}>
-          {/* <CardMedia
+      <Card>
+      {/* <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Grid item xs={4}> */}
+          
+            {/* <CardMedia
             component="img"
-            height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-            alt="green iguana"
-          /> */}
+            
+              
+              
+              image={props.inventory.path}
+              alt="green iguana"
+            /> */}
+            {/* </Grid>
+            <Grid item> */}
+            <CardActionArea component={RouterLink} to ={{ pathname:'/seedinfo/'+ props.inventory.id , state: props}}>
+          
           <CardContent>
+            
             <Typography gutterBottom variant="h5" component="div">
             {props.inventory.name}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are all over the place and this is going to test
-               the limit of how far they will spread.
+            <Box sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+
+              p: 1,
+              m: 0,
+              }}>
+             <Box sx={{mx:1,}}>
+             <b>Catagory: </b>{props.inventory.catagory}
+             </Box>
+             <Box sx={{mx:1,}}><b>Quantity: </b>{props.inventory.quantity}
+             </Box>
+             <Box sx={{mx:1,}}><b>Current Year: </b>{props.inventory.current_year? <a>Yes</a>: <a>No</a>}
+             </Box>
+             <Box sx={{mx:1,}}><b>Notes: </b>{props.inventory.notes}
+             </Box>
+            <Typography variant="body1" color="textPrimary">
             </Typography>
+            
+            </Box>
           </CardContent>
+          
+         
         </CardActionArea>
-      </Card>
+        {/* </Grid>
+        </Grid> */}
+      </Card> 
     </div>
   );
 }

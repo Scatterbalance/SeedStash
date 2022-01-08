@@ -5,9 +5,10 @@ import InventoryTopList from '../InventoryTopList copy/InventoryTopList';
 import {Button, Table, TableBody, TableCell, TableContainer, TableHead,TableRow,Paper, IconButton } from '@material-ui/core' ;
 import {Grid, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField} from '@material-ui/core';
 import DeleteIcon from '@mui/icons-material/Delete';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import '../InventoryTopList copy/InventoryTopList.css'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import '../InventoryTopList copy/InventoryTopList.css';
+
 
 
 // This is one of our simplest components
@@ -39,14 +40,17 @@ function InventoryPage() {
     
   }, []);
 
-  const [catagoryList, setCatagoryList] = useState( {id: 0 ,catagory:"All"} );
+  const [catagoryList, setCatagoryList] = useState( {id: 0 ,catagory:"All", path: "/Images/all_garden.jpg"} );
   
 
 
 
   return (
     <div >
+      <center>
       <h2>Inventory</h2>
+      <h4>Select a Catagory</h4>
+      </center>
       <section className = "cardwrap">
       <InventoryTopList catagory = {catagoryList}/>
        

@@ -24,7 +24,7 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
 
   const query = 
-  `SELECT  seeds.id, catagory FROM inventory
+  `SELECT  seeds.id, catagory, path FROM inventory
   JOIN seeds ON inventory.seed_id = seeds.id
   WHERE user_id=${req.params.id}
   GROUP BY seeds.id

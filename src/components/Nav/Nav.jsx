@@ -1,11 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { IconButton, MenuList, MenuItem, Menu } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import InfoIcon from '@mui/icons-material/Info';
+
 
 function Nav() {
   const user = useSelector((store) => store.user);
+
+  //menu logic
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div className="nav">
@@ -24,26 +42,17 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
+              
+            
 
             <Link className="navLink" to="/inventory">
-              Inventory Page
+              Inventory
             </Link>
 
             <Link className="navLink" to="/AddSeedPage">
-              Add Seed Page
+              + Add Seed
             </Link>
-
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-
-            <Link className="navLink" to="/current">
-              Current Year
-            </Link>
-
+            
             <LogOutButton className="navLink" />
           </>
         )}

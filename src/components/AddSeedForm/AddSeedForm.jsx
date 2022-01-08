@@ -91,7 +91,7 @@ const handleChangeCatagory = (event)=>{
       <Button variant="outlined" onClick={()=>{history.goBack()}} >Cancel</Button>
       <Button variant="outlined" onClick= {()=>{dispatch({type:"ADD_INVENTORY" ,payload:newSeed}); history.goBack();}}>Submit</Button>
       
-      <p>{JSON.stringify(newSeed)}</p>
+      {/* <p>{JSON.stringify(newSeed)}</p> */}
 
     
 
