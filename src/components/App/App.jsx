@@ -35,6 +35,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    
   }, [dispatch]);
 
   return (
@@ -70,7 +71,7 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/seedinfo/:id"
+            path="/seedinfo/:seed_id/:catagory/:id"
           >
             <SeedInfoPage />
           </ProtectedRoute>
@@ -78,7 +79,7 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/inventory/:id"
+            path="/inventory/:id/:catagory"
           >
             <InventoryList />
           </ProtectedRoute>

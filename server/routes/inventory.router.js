@@ -64,7 +64,7 @@ router.put('/', (req, res) => {
 //delete route
 
 router.delete('/:id', (req, res) => {
-console.log(req.params.id );
+console.log(req.params );
 
   const queryString = `DELETE FROM inventory WHERE id=$1`;
   values = [ req.params.id ];

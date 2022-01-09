@@ -45,7 +45,7 @@ function InventoryTopList(props) {
 
       
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea component={RouterLink} to ={{ pathname:'/inventory/'+ props.catagory.id , state: props}}>
+        <CardActionArea component={RouterLink} to ={{ pathname:`/inventory/${props.catagory.id}/${props.catagory.catagory}`, state: props}}>
           <CardMedia
             component="img"
             height="140"

@@ -3,21 +3,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, useLayoutEffect } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router';
 
-import {Button, Table, TableBody, TableCell, TableContainer, TableHead,TableRow,Paper, IconButton,Box, InputLabel, Select, MenuItem } from '@material-ui/core' ;
-import {Grid, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Collapse} from '@material-ui/core';
+import {Button,Paper, IconButton,Box, InputLabel, Select, MenuItem,Breadcrumbs, Link} from '@material-ui/core' ;
+import {Grid, TextField} from '@material-ui/core';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
+
 import Checkbox from '@mui/material/Checkbox';
-import InventoryTopList from '../InventoryTopList/InventoryTopList';
-import InventoryListItem from '../InventoryListItem/InventoryListItem';
-import '../InventoryTopList copy/InventoryTopList.css'
-import SeedInfo from '../SeedInfo/SeedInfo';
+
+import '../InventoryTopList copy/InventoryTopList.css';
+
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 //this function is for each individual seed item
 
 
 
 function SeedInfoPage(props) {
+
+
+
 const dispatch = useDispatch();
 const location = useLocation();
 const history = useHistory();
@@ -27,11 +30,18 @@ const user = useSelector((store) => store.user);
 const catagories = useSelector((store) => store.catagories);
 const inventory = useSelector((store) => store.inventory);
 
+
+useEffect(() => {
+  dispatch({ type: 'FETCH_INVENTORY', payload: user.id });
+    
+}, []);
+
 //edit conditional rendering
 const [toggleEdit, setToggleEdit] = useState( false );
 
 
 // const inventoryItem = inventory
+
 
 const handleChangeCatagory = (event)=>{
   setSeedInfo ({...seedInfo , seed_id: event.target.value});
@@ -44,7 +54,8 @@ const handleCancelEdit = ()=>{
 }
 const handleSaveEdit = ()=>{
   dispatch({type:"UPDATE_SEED", payload: seedInfo});
-  setToggleEdit(!toggleEdit)
+  setToggleEdit(!toggleEdit);
+ 
 }
 
 
@@ -63,32 +74,42 @@ const [seedInfo, setSeedInfo] = useState(
   }
    );
 
+
+
+
 const seed = (seed)=>{
   const sprout = inventory.find(el=> el.id === Number(params.id));
   setSeedInfo(sprout);
+ 
 }
 
 useLayoutEffect(() => {
   seed(seedInfo);
     
-}, [inventory]);
-
-useEffect(() => {
-  dispatch({ type: 'FETCH_INVENTORY', payload: user.id });
-    
 }, []);
+
+
+
 
   return (
 <div className="container">
 <h3>seedinfopage</h3>
-{/* <p>{JSON.stringify(params)}</p> */}
-{/* <p>{JSON.stringify(inventory)}</p> */}
+
+<p>{JSON.stringify(params)}</p>
 {/* <p>{JSON.stringify(seedInfo)}</p> */}
 {/* <SeedInfo seedInfo={seedInfo}/> */}
-                              <div>
+                              <div> 
+                               
+                              <Breadcrumb  seedInfo={seedInfo}/>
+    
                               { toggleEdit ?
                               <span>
                                 <h2>Seed Info</h2>
+                               
+
+
+
+
                                
                                 
                                 
@@ -105,8 +126,9 @@ useEffect(() => {
                                         value = {seedInfo.seed_id}
                                         
                                         onChange={handleChangeCatagory}>
-                                          {catagories.map(catagory =>
-                                          <MenuItem key = {catagory.id} value = {catagory.id}>{catagory.catagory}</MenuItem>)}
+                                          
+                                        {catagories.map(catagory =>
+                                        <MenuItem key = {catagory.id} value = {catagory.id}>{catagory.catagory}</MenuItem>)}
                                       </Select>
                                       
                                     
@@ -157,8 +179,7 @@ useEffect(() => {
                                   </Grid>
                                 
                               
-                                {/* {JSON.stringify(catagories)}
-                                {JSON.stringify(seedInfo)} */}
+                                
 
                         
                              
