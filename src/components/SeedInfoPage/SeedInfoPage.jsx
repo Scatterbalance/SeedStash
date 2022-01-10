@@ -12,6 +12,7 @@ import Checkbox from '@mui/material/Checkbox';
 import '../InventoryTopList copy/InventoryTopList.css';
 
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
+import PageHeader from '../PageHeader/PageHeader';
 
 //this function is for each individual seed item
 
@@ -92,158 +93,134 @@ useLayoutEffect(() => {
 
 
   return (
-<div className="container">
-<h3>seedinfopage</h3>
+<div > 
+  <PageHeader name = "Seed Info"/>
 
-<p>{JSON.stringify(params)}</p>
-{/* <p>{JSON.stringify(seedInfo)}</p> */}
-{/* <SeedInfo seedInfo={seedInfo}/> */}
-                              <div> 
-                               
-                              <Breadcrumb  seedInfo={seedInfo}/>
-    
-                              { toggleEdit ?
-                              <span>
-                                <h2>Seed Info</h2>
-                               
+    <div className="container"> 
+      <Breadcrumb  seedInfo={seedInfo}/>
+      
 
-
-
-
-                               
-                                
-                                
-                                  <Grid container spacing = {3}>
-                                    <Grid  item xs={5}>
-                                    <input type = "text" value = {seedInfo.name} onChange = { (event)=>setSeedInfo ({...seedInfo , name: event.target.value})} />
-                                    <br />
-                                    Catagory:
-                                    
-                                      <Select
-                                        labelId="catagory-select-label"
-                                        id="catagory-select-label"
-                                        label="Catagory"
-                                        value = {seedInfo.seed_id}
-                                        
-                                        onChange={handleChangeCatagory}>
-                                          
-                                        {catagories.map(catagory =>
-                                        <MenuItem key = {catagory.id} value = {catagory.id}>{catagory.catagory}</MenuItem>)}
-                                      </Select>
-                                      
-                                    
-                                    
-                                    
-                                    <h4>Quantiny:</h4> 
-                                    <input type = "text" value = {seedInfo.quantity} onChange = { (event)=>setSeedInfo ({...seedInfo , quantity: event.target.value})} />
-                                    
-                                    <h4>Expiration:</h4> 
-                                    <input type = "text" value = {seedInfo.expiration} onChange = { (event)=>setSeedInfo ({...seedInfo , expiration: event.target.value})} />
-                                    
-                                    </Grid>
-                                    
-                                    
-                                    <Grid item xs={5}>
-                                    <h4>Direct sow:</h4> 
-                                    <Checkbox
-                                    checked={seedInfo.indoor}
-                                    onChange={(event) => {
-                                      setSeedInfo ({...seedInfo , indoor: event.target.checked})}}
-                                    inputProps={{ 'aria-label': 'controlled' }}
-                                    />
-                                    
-                                    <h4>Planting this year:</h4> 
-                                    <Checkbox
-                                    checked={seedInfo.current_year}
-                                    onChange={(event) => {
-                                      setSeedInfo ({...seedInfo , current_year: event.target.checked})}}
-                                    inputProps={{ 'aria-label': 'controlled' }}
-                                    />
+      { toggleEdit ?
+      
+        <Box>
+          
+            <TextField type = "text" value = {seedInfo.name} onChange = { (event)=>setSeedInfo ({...seedInfo , name: event.target.value})} />
+            
+            Catagory:
+            
+            <Select
+              labelId="catagory-select-label"
+              id="catagory-select-label"
+              label="Catagory"
+              value = {seedInfo.seed_id}
+              
+              onChange={handleChangeCatagory}>
+                
+              {catagories.map(catagory =>
+              <MenuItem key = {catagory.id} value = {catagory.id}>{catagory.catagory}</MenuItem>)}
+            </Select>
+              
+            
+            
+            
+            <h4>Quantiny:</h4> 
+            <input type = "text" value = {seedInfo.quantity} onChange = { (event)=>setSeedInfo ({...seedInfo , quantity: event.target.value})} />
+            
+            <h4>Expiration:</h4> 
+            <input type = "text" value = {seedInfo.expiration} onChange = { (event)=>setSeedInfo ({...seedInfo , expiration: event.target.value})} />
+            
+          
+            
+            
+          
+            <h4>Direct sow:</h4> 
+            <Checkbox
+            checked={seedInfo.indoor}
+            onChange={(event) => {
+              setSeedInfo ({...seedInfo , indoor: event.target.checked})}}
+            inputProps={{ 'aria-label': 'controlled' }}
+            />
+            
+            <h4>Planting this year:</h4> 
+            <Checkbox
+            checked={seedInfo.current_year}
+            onChange={(event) => {
+              setSeedInfo ({...seedInfo , current_year: event.target.checked})}}
+            inputProps={{ 'aria-label': 'controlled' }}
+            />
 
 
 
-                                    {seedInfo.current_year}
-                                    
-                                    <h4>Source:</h4> 
-                                    <input type = "text" value = {seedInfo.source} onChange = { (event)=>setSeedInfo ({...seedInfo , source: event.target.value})} />
-                                    {seedInfo.source}
-                                  
-                                    
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                    <h4>Notes:</h4> 
-                                    <input type = "text" value = {seedInfo.notes} onChange = { (event)=>setSeedInfo ({...seedInfo , notes: event.target.value})} />
-                                    
-                                    </Grid>
+            {seedInfo.current_year}
+            
+            <h4>Source:</h4> 
+            <input type = "text" value = {seedInfo.source} onChange = { (event)=>setSeedInfo ({...seedInfo , source: event.target.value})} />
+            {seedInfo.source}
+          
 
-                                  </Grid>
-                                
-                              
-                                
+          
+            <h4>Notes:</h4> 
+            <input type = "text" value = {seedInfo.notes} onChange = { (event)=>setSeedInfo ({...seedInfo , notes: event.target.value})} />
+          
 
-                        
-                             
-                              <Button onClick={handleSaveEdit}>save</Button>
-                                <Button onClick={handleCancelEdit}>Cancel</Button>
-                                
-                              
-                              
-                              </span>:
-                              
-                              <span>
-                                <h2>Seed Info</h2>
-                              
-                                
-                                
-                                  <Grid container spacing = {3}>
-                                    <Grid  item xs={5}>
-                                    <h4>Name:</h4> {seedInfo.name}
+        
 
-                                    <h4>Catagory:</h4> {seedInfo.catagory}
-                                    <h4>Quantiny:</h4> {seedInfo.quantity}
-                                    
-                                    <h4>Expiration:</h4> {seedInfo.expiration}
-                                    </Grid>
-                                    <Grid item xs={2}>
-                                    </Grid>
-                                    <Grid item xs={5}>
-                                    <h4>Direct sow:</h4> 
-                                    <Checkbox
-                                    disabled = {!toggleEdit}
-                                    checked={seedInfo.indoor}
-                                    inputProps={{ 'aria-label': 'controlled' }}
-                                    />
-                                    
-                                    
-                                    <h4>Planting this year:</h4> 
-                                    <Checkbox
-                                    disabled = {!toggleEdit}
-                                    checked={seedInfo.current_year}
-                                    inputProps={{ 'aria-label': 'controlled' }}
-                                    />
-                                    
-                                    <h4>Source:</h4> {seedInfo.source}
-                                  
-                                    
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                    <h4>Notes:</h4> {seedInfo.notes}
-                                    </Grid>
+        <Button onClick={handleSaveEdit}>save</Button>
+        <Button onClick={handleCancelEdit}>Cancel</Button>
+      
+        </Box>
+        :
+            
+      <span>
 
-                                  </Grid>
-                                
-                                
-                                
+        <Grid container spacing = {3}>
+          <Grid  item xs={6}>
+            <h4>Name:</h4> {seedInfo.name}
 
-                        
-                             
-                                <Button onClick={()=>{setToggleEdit(!toggleEdit)}}>edit</Button>
-                                
-                              
-                              </span>
-                              }
-                        </div>
-                    </div>
+            <h4>Catagory:</h4> {seedInfo.catagory}
+            <h4>Quantiny:</h4> {seedInfo.quantity}
+            
+            <h4>Expiration:</h4> {seedInfo.expiration}
+          </Grid>
+          
+          <Grid item xs={6}>
+          <h4>Direct sow:</h4> 
+          <Checkbox
+          disabled = {!toggleEdit}
+          checked={seedInfo.indoor}
+          inputProps={{ 'aria-label': 'controlled' }}
+          />
+          
+          
+          <h4>Planting this year:</h4> 
+          <Checkbox
+          disabled = {!toggleEdit}
+          checked={seedInfo.current_year}
+          inputProps={{ 'aria-label': 'controlled' }}
+          />
+          
+          <h4>Source:</h4> {seedInfo.source}
+        
+          
+          </Grid>
+          <Grid item xs={12}>
+          <h4>Notes:</h4> {seedInfo.notes}
+          </Grid>
+
+        </Grid>
+        
+        
+        
+
+
+      
+        <Button onClick={()=>{setToggleEdit(!toggleEdit)}}>edit</Button>
+        
+      
+      </span>
+            }
+      </div>
+  </div>
       
                         
                       

@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import '../InventoryTopList copy/InventoryTopList.css';
+import PageHeader from '../PageHeader/PageHeader';
 
 
 
@@ -47,8 +48,8 @@ function InventoryPage() {
 
   return (
     <div >
+      <PageHeader name={"Inventory"} />
       <center>
-      <h2>Inventory</h2>
       <h4>Select a Catagory</h4>
       </center>
       <section className = "cardwrap">

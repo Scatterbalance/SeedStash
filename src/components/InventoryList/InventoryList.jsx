@@ -3,14 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, useLayoutEffect } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router';
 
-import {Button,Paper, IconButton,Box, InputLabel, Select, MenuItem, Grid, Breadcrumbs, Chip,Link } from '@material-ui/core' ;
-
+import {Button,Paper, IconButton,Box, InputLabel, Select, MenuItem, Grid, Breadcrumbs, Chip,Link,TextField } from '@material-ui/core' ;
+import SearchIcon from '@mui/icons-material/Search'
+import ClearIcon from '@mui/icons-material/Clear'
 import DeleteIcon from '@mui/icons-material/Delete';
 import ReadMoreRoundedIcon from '@mui/icons-material/ReadMoreRounded';
 import Checkbox from '@mui/material/Checkbox';
 import InventoryTopList from '../InventoryTopList/InventoryTopList';
 import InventoryListItem from '../InventoryListItem/InventoryListItem';
 import '../InventoryTopList copy/InventoryTopList.css';
+import PageHeader from '../PageHeader/PageHeader';
 
 
 //this function is for each individual seed item
@@ -99,8 +101,11 @@ useEffect(() => {
 }, []);
 
   return (
-<div className="container">
-  <p>{JSON.stringify(params)}</p>
+    <div>
+    <PageHeader name={params.catagory} />
+   <div className="container">
+  
+  
     <div>
     <Breadcrumbs aria-label="breadcrumb">
       <Link
@@ -123,35 +128,72 @@ useEffect(() => {
     </div>
     
 <Grid container>
-  <Grid item xs={12}><center><h1>Inventory</h1></center></Grid>
-  <Grid
-   sx={{
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    listStyle: 'none',
-    p: 0.5,
-    m: 0,
-  }}
-  item xs={12} sm={6}>
-    <Chip 
-    label="Current Year Seeds"
-    color ="primary"
-    variant = {currentYear ? "default":"outlined"}
-    onClick = {handleCurrentYear}
-    />
-     <Chip 
-    label="Direct sow"
-    color ="primary"
-    variant = "outlined"
-    />
-  </Grid>
   
   
-  <Grid item xs={12} sm={6}><input type = "text" placeholder = "search" onChange = {(event)=>requestSearch(event.target.value)} /></Grid>
+  
+  <Grid item xs={12}>
+  <Box
+  display='flex'
+  justifyContent='flex-end'>
+  <TextField
+        variant="outlined"
+        value={searchText}
+        onChange = {(event)=>requestSearch(event.target.value)}
+        placeholder="Search…"
+        size='small'
+        InputProps={{
+          startAdornment: <SearchIcon fontSize="small" />,
+          endAdornment: (
+            <IconButton
+              title="Clear"
+              aria-label="Clear"
+              size="small"
+              style={{ visibility: searchText ? 'visible' : 'hidden' }}
+              onClick={(event)=>requestSearch('')}
+            >
+              <ClearIcon fontSize="small" />
+            </IconButton>
+          ),
+        }}
+        />
+       
+
+    </Box>
+    </Grid>
 </Grid>
 <hr />
-<div className="cardwrap" >
+<Grid
+   
+  item xs={12}>
+    <Box sx={{
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flexWrap: 'wrap',
+    listStyle: 'none',
+    spacing: 1,
+    p: 0.5,
+    m: 0,
+  }}>
+    
+      <Box sx={{mx:.5}}>
+      <Chip 
+      label="Current Year Seeds"
+      color ="primary"
+      variant = {currentYear ? "default":"outlined"}
+      onClick = {handleCurrentYear}
+      />
+      </Box>
+      
+      {/* <Box sx={{mx:.5}}>
+      <Chip 
+      label="Direct sow"
+      color ="primary"
+      variant = "outlined"
+      />
+      </Box>*/}
+    </Box>
+  </Grid>
+<div className="cardwrap" > 
   
   
   
@@ -173,7 +215,7 @@ useEffect(() => {
   
       
       
-
+</div>
 </div> 
 </div>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import {Card, CardContent, CardMedia, Typography, CardActionArea, Grid, Box,Button} from '@material-ui/core'
+import {Card, CardContent, CardMedia, Typography, CardActionArea, Grid, Box,Button,Chip} from '@material-ui/core'
 import { CardActions, IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
@@ -51,6 +51,7 @@ function InventoryListItem(props) {
             
             <Typography gutterBottom variant="h5" component="div">
             {props.inventory.name}
+            
             </Typography>
             {/* <Box sx={{
               display: 'flex',
@@ -71,6 +72,16 @@ function InventoryListItem(props) {
             <Typography variant="body1" color="textPrimary">
             <b>Quantity: </b>{props.inventory.quantity}
             </Typography>
+            {props.inventory.current_year ? 
+            <Chip 
+              label="Current Year"
+                color ="primary"
+                variant = "default"
+                size="small"
+                
+                />:
+                <span></span>
+              }
             
             {/* </Box> */}
           </CardContent>

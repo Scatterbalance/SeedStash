@@ -1,0 +1,18 @@
+.pageHeader {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+.headerImg {
+  min-height: 140px;
+  object-fit: cover;
+}
+
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 42px;
+}
