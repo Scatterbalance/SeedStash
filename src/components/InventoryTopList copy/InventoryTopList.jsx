@@ -100,7 +100,7 @@ function InventoryTopList(props) {
                       <TableRow>
                         <TableCell>Plant Name</TableCell>
                         <TableCell align="right">Qty</TableCell>
-                        <TableCell align="right">Expiration Year</TableCell>
+                        <TableCell align="right">sow_date Year</TableCell>
                         <TableCell align="right">view more</TableCell>
                         <TableCell align="right"></TableCell>
                       </TableRow>

@@ -35,7 +35,7 @@ function Breadcrumb(props) {
         <Link
           underline="hover"
           color="textPrimary"
-          href={`/inventory#/seedinfo/${props.seedInfo.id}`}
+          href={`/inventory#/seedinfo/${params.seed_id}/${params.catagory}/${props.seedInfo.id}`}
           aria-current="page"
         >
           {props.seedInfo.name}

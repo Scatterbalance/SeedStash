@@ -119,7 +119,7 @@ useEffect(() => {
         <Link
           underline="hover"
           color="textPrimary"
-          href={`/inventory#/seedinfo/${params.id}`}
+          href={`/inventory#/inventory/${params.id}/${params.catagory}`}
           aria-current="page"
         >
           {params.catagory}

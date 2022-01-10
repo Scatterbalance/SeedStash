@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import AddSeedForm from '../AddSeedForm/AddSeedForm';
+import PageHeader from '../PageHeader/PageHeader';
 
 
 // This is one of our simplest components
@@ -30,13 +31,17 @@ function AddSeedPage() {
 
 
   return (
-    <div className="container">
-      <p>Add seed Page</p>
+    <div>
+    <PageHeader name="Add New Seed" />
+      <div className="container">
+      
 
       
       {/* <p>{JSON.stringify(catagories)}</p> */}
       <AddSeedForm />
+      </div>
     </div>
+
   );
 }
 

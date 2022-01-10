@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, useLayoutEffect } from 'react';
 import { useHistory, useLocation, useParams } from 'react-router';
 
-import {Button,Paper, IconButton,Box, InputLabel, Select, MenuItem,Breadcrumbs, Link} from '@material-ui/core' ;
+import {Button,Paper, IconButton,Box, InputLabel, Select, MenuItem,Breadcrumbs, Link, Typography, } from '@material-ui/core' ;
 import {Grid, TextField} from '@material-ui/core';
 import DeleteIcon from '@mui/icons-material/Delete';
+
 
 import Checkbox from '@mui/material/Checkbox';
 
@@ -13,6 +14,7 @@ import '../InventoryTopList copy/InventoryTopList.css';
 
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import PageHeader from '../PageHeader/PageHeader';
+import { grid } from '@mui/system';
 
 //this function is for each individual seed item
 
@@ -66,7 +68,7 @@ const [seedInfo, setSeedInfo] = useState(
   seed_id: '',
   user_id: user.id,
   name:'' ,
-  expiration: '',
+  sow_date: '',
   quantity: '',
   source: '',
   current_year: false,
@@ -99,133 +101,223 @@ useLayoutEffect(() => {
     <div className="container"> 
       <Breadcrumb  seedInfo={seedInfo}/>
       
-
       { toggleEdit ?
       
-        <Box>
-          
-            <TextField type = "text" value = {seedInfo.name} onChange = { (event)=>setSeedInfo ({...seedInfo , name: event.target.value})} />
-            
-            Catagory:
-            
-            <Select
-              labelId="catagory-select-label"
-              id="catagory-select-label"
-              label="Catagory"
-              value = {seedInfo.seed_id}
-              
-              onChange={handleChangeCatagory}>
-                
-              {catagories.map(catagory =>
-              <MenuItem key = {catagory.id} value = {catagory.id}>{catagory.catagory}</MenuItem>)}
-            </Select>
-              
-            
-            
-            
-            <h4>Quantiny:</h4> 
-            <input type = "text" value = {seedInfo.quantity} onChange = { (event)=>setSeedInfo ({...seedInfo , quantity: event.target.value})} />
-            
-            <h4>Expiration:</h4> 
-            <input type = "text" value = {seedInfo.expiration} onChange = { (event)=>setSeedInfo ({...seedInfo , expiration: event.target.value})} />
-            
-          
-            
-            
-          
-            <h4>Direct sow:</h4> 
-            <Checkbox
-            checked={seedInfo.indoor}
-            onChange={(event) => {
-              setSeedInfo ({...seedInfo , indoor: event.target.checked})}}
-            inputProps={{ 'aria-label': 'controlled' }}
-            />
-            
-            <h4>Planting this year:</h4> 
-            <Checkbox
-            checked={seedInfo.current_year}
-            onChange={(event) => {
-              setSeedInfo ({...seedInfo , current_year: event.target.checked})}}
-            inputProps={{ 'aria-label': 'controlled' }}
-            />
+      <Box sx={{m:5}}>
+          <Grid container direction='column' spacing= {3}>
 
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Name:</Typography>
+              </Grid>
+              <Grid item>
+                  <TextField  value = {seedInfo.name} onChange = { (event)=>setSeedInfo ({...seedInfo , name: event.target.value})} />
+              </Grid>
+            </Grid>
 
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+              <Typography>Catagory:</Typography>
+              </Grid>
+              <Grid item>
+                <Select
+                  labelId="catagory-select-label"
+                  id="catagory-select-label"
+                  label="Catagory"
+                  value = {seedInfo.seed_id}
+                  
+                  onChange={handleChangeCatagory}>
+                    
+                  {catagories.map(catagory =>
+                  <MenuItem key = {catagory.id} value = {catagory.id}>{catagory.catagory}</MenuItem>)}
+                </Select>
+              </Grid>
+            </Grid>
 
-            {seedInfo.current_year}
-            
-            <h4>Source:</h4> 
-            <input type = "text" value = {seedInfo.source} onChange = { (event)=>setSeedInfo ({...seedInfo , source: event.target.value})} />
-            {seedInfo.source}
-          
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Quantiny:</Typography>
+              </Grid>
+              <Grid item>
+                  <TextField  value = {seedInfo.quantity} onChange = { (event)=>setSeedInfo ({...seedInfo , quantity: event.target.value})} />
+              </Grid>
+            </Grid>
 
-          
-            <h4>Notes:</h4> 
-            <input type = "text" value = {seedInfo.notes} onChange = { (event)=>setSeedInfo ({...seedInfo , notes: event.target.value})} />
-          
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Sow Date:</Typography>
+              </Grid>
+              <Grid item>
+                  <TextField  value = {seedInfo.sow_date} onChange = { (event)=>setSeedInfo ({...seedInfo , sow_date: event.target.value})} />
+              </Grid>
+            </Grid>
 
-        
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Direct sow:</Typography>
+              </Grid>
+              <Grid item>
+                  <Checkbox
+                checked={!seedInfo.indoor}
+                onChange={(event) => {
+                  setSeedInfo ({...seedInfo , indoor: !event.target.checked})}}
+                inputProps={{ 'aria-label': 'controlled' }}
+                />
+              </Grid>
+            </Grid>
 
-        <Button onClick={handleSaveEdit}>save</Button>
-        <Button onClick={handleCancelEdit}>Cancel</Button>
-      
-        </Box>
-        :
-            
-      <span>
+            <Grid item xs container spacing={2}  alignItems="center" >
+              <Grid item>
+                <Typography>Current Year Seed:</Typography>
+              </Grid>
+              <Grid item>
+                <Checkbox
+                checked={seedInfo.current_year}
+                onChange={(event) => {
+                  setSeedInfo ({...seedInfo , current_year: event.target.checked})}}
+                inputProps={{ 'aria-label': 'controlled' }}
+                />
+              </Grid>
+            </Grid>
 
-        <Grid container spacing = {3}>
-          <Grid  item xs={6}>
-            <h4>Name:</h4> {seedInfo.name}
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Source:</Typography>
+              </Grid>
+              <Grid item>
+                  <TextField  value = {seedInfo.source} onChange = { (event)=>setSeedInfo ({...seedInfo , source: event.target.value})} />
+              </Grid>
+            </Grid>
 
-            <h4>Catagory:</h4> {seedInfo.catagory}
-            <h4>Quantiny:</h4> {seedInfo.quantity}
-            
-            <h4>Expiration:</h4> {seedInfo.expiration}
-          </Grid>
-          
-          <Grid item xs={6}>
-          <h4>Direct sow:</h4> 
-          <Checkbox
-          disabled = {!toggleEdit}
-          checked={seedInfo.indoor}
-          inputProps={{ 'aria-label': 'controlled' }}
-          />
-          
-          
-          <h4>Planting this year:</h4> 
-          <Checkbox
-          disabled = {!toggleEdit}
-          checked={seedInfo.current_year}
-          inputProps={{ 'aria-label': 'controlled' }}
-          />
-          
-          <h4>Source:</h4> {seedInfo.source}
-        
-          
-          </Grid>
-          <Grid item xs={12}>
-          <h4>Notes:</h4> {seedInfo.notes}
-          </Grid>
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Notes:</Typography>
+              </Grid>
+              <Grid item>
+                  <TextField  value = {seedInfo.notes} onChange = { (event)=>setSeedInfo ({...seedInfo , notes: event.target.value})} />
+              </Grid>
+            </Grid>
 
+            <Grid item xs container spacing={2} alignItems="center"  >
+              <Grid item>
+              <Button onClick={handleSaveEdit} variant="contained" color = "primary" >save</Button>
+              </Grid>
+              <Grid item>
+              <Button onClick={handleCancelEdit} variant="contained" color = "primary" >Cancel</Button>
+              </Grid>
+            </Grid>
         </Grid>
+        </Box>  
         
         
+        
+        :
         
 
+        <Box sx={{m:5}}>
+          <Grid container spacing={2} display = "flex-wrap">
+          <Grid item xs={12} sm={6} container direction='column' spacing= {3}>
 
-      
-        <Button onClick={()=>{setToggleEdit(!toggleEdit)}}>edit</Button>
-        
-      
-      </span>
-            }
+            <Grid item xs container  alignItems="center"
+             justifyContent='center' >
+              
+              <Grid item>
+               <Typography variant ="h4">
+              {seedInfo.name}  
+              </Typography> 
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+              <Typography>Catagory:</Typography>
+              </Grid>
+              <Grid item>
+              {seedInfo.catagory}
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Quantiny:</Typography>
+              </Grid>
+              <Grid item>
+              {seedInfo.quantity}
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Sow Date:</Typography>
+              </Grid>
+              <Grid item>
+              {seedInfo.sow_date}
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Direct sow:</Typography>
+              </Grid>
+              <Grid item>
+              <Checkbox
+                disabled = {!toggleEdit}
+                checked={!seedInfo.indoor}
+                inputProps={{ 'aria-label': 'controlled' }}
+                />
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2}  alignItems="center" >
+              <Grid item>
+                <Typography>Current Year Seed:</Typography>
+              </Grid>
+              <Grid item>
+              <Checkbox
+                disabled = {!toggleEdit}
+                checked={seedInfo.current_year}
+                inputProps={{ 'aria-label': 'controlled' }}
+                />
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Source:</Typography>
+              </Grid>
+              <Grid item>
+              {seedInfo.source}
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Notes:</Typography>
+              </Grid>
+              <Grid item>
+              {seedInfo.notes}
+               </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center"  >
+              <Grid item>
+              <Button variant="contained" color = "primary" onClick={()=>{setToggleEdit(!toggleEdit)}}  >edit</Button>
+              </Grid>
+              
+            </Grid>
+        </Grid>
+          <Grid item >
+            <img src={seedInfo.path}/>
+            
+            
+          </Grid>
+        </Grid>
+        </Box>  
+        }
+
+          
       </div>
-  </div>
-      
-                        
-                      
-                      
-       
+  </div>      
      
   );
 }

@@ -2,8 +2,10 @@ import {React} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useLayoutEffect, useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
-import {Select,InputLabel, MenuItem, Button} from '@material-ui/core';
+import {Select,InputLabel, MenuItem, Button,Box, Grid, TextField, Typography} from '@material-ui/core';
 import {useHistory} from 'react-router'
+import PageHeader from '../PageHeader/PageHeader';
+
 
 
 
@@ -25,76 +27,146 @@ function AddSeedForm(props) {
   
 //defining object to send
   const [newSeed, setNewSeed] = useState( {
-    seed_id: '',
+    seed_id: 12,
     user_id: user.id,
     name: '',
-    expiration: '',
+    sow_date: '',
     quantity: 0,
     source: '',
     current_year: false,
-    indoor: false,
+    indoor: true,
     notes: '',
     } );
 
 const handleChangeCatagory = (event)=>{
    setNewSeed ({...newSeed , seed_id: event.target.value});
+
 }
+const [required,setRequired]=useState(false);
 
 
 
   return (
+    <div>
+      
+     
     <div className="container">
       
-      <p>Add seed Form</p>
+      
+
+      <Box sx={{m:5}}>
+          <Grid container direction='column' spacing= {3}>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Name:</Typography>
+              </Grid>
+              <Grid item>
+                  <TextField  value = {newSeed.name} onChange = { (event)=>setNewSeed ({...newSeed , name: event.target.value})} />
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+              <Typography>Catagory:</Typography>
+              </Grid>
+              <Grid item>
+                
+                <Select
+                  labelId="catagory-select-label"
+                  id="catagory-select-label"
+                  label="Catagory"
+                  value = {newSeed.seed_id}
+                  
+                  onChange={handleChangeCatagory}>
+                    
+                  {catagories.map(catagory =>
+                  <MenuItem key = {catagory.id} value = {catagory.id}>{catagory.catagory}</MenuItem>)}
+                </Select>
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Quantiny:</Typography>
+              </Grid>
+              <Grid item>
+                  <TextField  value = {newSeed.quantity} onChange = { (event)=>setNewSeed ({...newSeed , quantity: event.target.value})} />
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Sow Date:</Typography>
+              </Grid>
+              <Grid item>
+                  <TextField  value = {newSeed.sow_date} onChange = { (event)=>setNewSeed ({...newSeed , sow_date: event.target.value})} />
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Direct sow:</Typography>
+              </Grid>
+              <Grid item>
+                  <Checkbox
+                checked={!newSeed.indoor}
+                onChange={(event) => {
+                  setNewSeed ({...newSeed , indoor: !event.target.checked})}}
+                inputProps={{ 'aria-label': 'controlled' }}
+                />
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2}  alignItems="center" >
+              <Grid item>
+                <Typography>Current Year Seed:</Typography>
+              </Grid>
+              <Grid item>
+                <Checkbox
+                checked={newSeed.current_year}
+                onChange={(event) => {
+                  setNewSeed ({...newSeed , current_year: event.target.checked})}}
+                inputProps={{ 'aria-label': 'controlled' }}
+                />
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Source:</Typography>
+              </Grid>
+              <Grid item>
+                  <TextField  value = {newSeed.source} onChange = { (event)=>setNewSeed ({...newSeed , source: event.target.value})} />
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center" >
+              <Grid item>
+                <Typography>Notes:</Typography>
+              </Grid>
+              <Grid item>
+                  <TextField  value = {newSeed.notes} onChange = { (event)=>setNewSeed ({...newSeed , notes: event.target.value})} />
+              </Grid>
+            </Grid>
+
+            <Grid item xs container spacing={2} alignItems="center"  >
+              <Grid item>
+              <Button variant="contained" onClick={()=>{history.goBack()}} >Cancel</Button>
+              </Grid>
+              <Grid item>
+              <Button variant="contained" onClick= {()=>{dispatch({type:"ADD_INVENTORY" ,payload:newSeed}); history.goBack();}}>Submit</Button>
+              </Grid>
+            </Grid>
+        </Grid>
+        </Box>  
 
       
 
-      <h4>Catagory: 
-      <InputLabel id="catagory-select-label">Catagory</InputLabel>
-            <Select
-              labelId="catagory-select-label"
-              id="catagory-select-label"
-              label="Catagory"
-              value = {newSeed.seed_id}
-              onChange={handleChangeCatagory}>
-                {catagories.map(catagory =>
-                <MenuItem key = {catagory.id} value = {catagory.id}>{catagory.catagory}</MenuItem>)}
-            </Select>
-      </h4>
-
-      <h4>Name: <input type = "text" placeholder = "Name" onChange = { (event)=>setNewSeed ({...newSeed , name: event.target.value})} /></h4>
-
-      <h4>Quantity: <input type = "text" placeholder = "Qty" onChange = { (event)=>setNewSeed ({...newSeed , quantity: event.target.value})} /></h4>
-
-      <h4>expiration year: <input type = "text" placeholder = "expiration" onChange = { (event)=>setNewSeed ({...newSeed , expiration: event.target.value})} /></h4>
-
-      <h4>source: <input type = "text" placeholder = "source" onChange = { (event)=>setNewSeed ({...newSeed , source: event.target.value})} /></h4>
-
-      <h4>Planting This Year?: 
-      <Checkbox
-      checked={newSeed.current_year}
-      onChange={(event) => {
-        setNewSeed ({...newSeed , current_year: event.target.checked})}}
-      inputProps={{ 'aria-label': 'controlled' }}
-      /></h4>
-
-      <h4>indoor: 
-      <Checkbox
-      checked={newSeed.indoor}
-      onChange={(event) => {
-        setNewSeed ({...newSeed , indoor: event.target.checked})}}
-      inputProps={{ 'aria-label': 'controlled' }}
-      /></h4>
-
-      <h4>notes: <input type = "text" placeholder = "notes" onChange = { (event)=>setNewSeed ({...newSeed , notes: event.target.value})} /></h4>
-
-      <Button variant="outlined" onClick={()=>{history.goBack()}} >Cancel</Button>
-      <Button variant="outlined" onClick= {()=>{dispatch({type:"ADD_INVENTORY" ,payload:newSeed}); history.goBack();}}>Submit</Button>
-      
       {/* <p>{JSON.stringify(newSeed)}</p> */}
 
     
-
+      </div>
     </div>
   );
 }

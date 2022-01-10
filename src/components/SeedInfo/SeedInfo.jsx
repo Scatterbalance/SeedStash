@@ -44,7 +44,7 @@ const [toggleEdit, setToggleEdit] = useState( false );
 //   seed_id: props.seedInfo.seed_id,
 //   user_id: user.id,
 //   name: props.seedInfo.name,
-//   expiration: props.seedInfo.expiration,
+//   sow_date: props.seedInfo.sow_date,
 //   quantity: props.seedInfo.quantity,
 //   source: props.seedInfo.source,
 //   current_year: props.seedInfo.current_year,
@@ -61,7 +61,7 @@ const [toggleEdit, setToggleEdit] = useState( false );
 //     seed_id: props.seedInfo.seed_id,
 //     user_id: user.id,
 //     name: props.seedInfo.name,
-//     expiration: props.seedInfo.expiration,
+//     sow_date: props.seedInfo.sow_date,
 //     quantity: props.seedInfo.quantity,
 //     source: props.seedInfo.source,
 //     current_year: props.seedInfo.current_year,
@@ -113,8 +113,8 @@ const [toggleEdit, setToggleEdit] = useState( false );
                                     <h4>Quantiny:</h4> 
                                     <input type = "text" value = {editSeed.quantity} onChange = { (event)=>setEditSeed ({...editSeed , quantity: event.target.value})} />
                                     
-                                    <h4>Expiration:</h4> 
-                                    <input type = "text" value = {editSeed.expiration} onChange = { (event)=>setEditSeed ({...editSeed , expiration: event.target.value})} />
+                                    <h4>sow_date:</h4> 
+                                    <input type = "text" value = {editSeed.sow_date} onChange = { (event)=>setEditSeed ({...editSeed , sow_date: event.target.value})} />
                                     
                                     </Grid>
                                     
@@ -179,7 +179,7 @@ const [toggleEdit, setToggleEdit] = useState( false );
                                     <h4>Catagory:</h4> {props.seedInfo.catagory}
                                     <h4>Quantiny:</h4> {props.seedInfo.quantity}
                                     
-                                    <h4>Expiration:</h4> {props.seedInfo.expiration}
+                                    <h4>sow_date:</h4> {props.seedInfo.sow_date}
                                     </Grid>
                                     <Grid item xs={2}>
                                     </Grid>
