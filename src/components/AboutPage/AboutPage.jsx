@@ -9,6 +9,9 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
+        <center>
+          <img src='/Images/stack.png' alt="Tech Stack"/>
+        </center>
       <h3>Technology Stack</h3>
       <ul>
         <li>

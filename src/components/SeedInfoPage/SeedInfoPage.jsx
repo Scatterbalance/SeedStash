@@ -106,7 +106,7 @@ useLayoutEffect(() => {
       <Box sx={{m:5}}>
           <Grid container direction='column' spacing= {3}>
 
-            <Grid item xs containter  justifyContent="center" alignItems="flex-start" >
+            <Grid item xs container  justifyContent="center" alignItems="flex-start" >
               
               <Typography align="center"  variant='h4'>Edit Seed Info</Typography> 
               
