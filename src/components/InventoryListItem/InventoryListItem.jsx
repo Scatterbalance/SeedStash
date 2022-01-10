@@ -1,10 +1,12 @@
-import React from 'react';
+import {React}from 'react';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import {Card, CardContent, CardMedia, Typography, CardActionArea, Grid, Box,Button,Chip} from '@material-ui/core'
+import {Card, CardContent, CardMedia, Typography, CardActionArea, Grid, Box,Button,Chip} from '@material-ui/core';
+import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core';
 import { CardActions, IconButton } from '@mui/material';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -12,8 +14,21 @@ import { useDispatch } from 'react-redux';
 // or even care what the redux state is'
 
 function InventoryListItem(props) {
+
   const dispatch = useDispatch();
   const params=useParams();
+
+//dialog logic
+const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   const handleDelete=()=>{
     dispatch({type: "DELETE_INVENTORY", payload: props.inventory})
@@ -87,7 +102,7 @@ function InventoryListItem(props) {
           </CardContent>
           <CardActions>
             <Button component={RouterLink} to ={{ pathname:`/seedinfo/${params.id}/${params.catagory}/${props.inventory.id}`, state: props}}>More Info</Button>
-            <IconButton onClick={handleDelete}>
+            <IconButton onClick={handleClickOpen}>
               <DeleteIcon />
             </IconButton>
 
@@ -99,6 +114,28 @@ function InventoryListItem(props) {
         {/* </Grid>
         </Grid> */}
       </Card> 
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {`Delete ${props.inventory.name}?`}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            This will permanently delete this item from your inventory.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={()=>{handleClose(); handleDelete();}} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

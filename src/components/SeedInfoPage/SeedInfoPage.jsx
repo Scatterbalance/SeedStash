@@ -106,9 +106,15 @@ useLayoutEffect(() => {
       <Box sx={{m:5}}>
           <Grid container direction='column' spacing= {3}>
 
+            <Grid item xs containter  justifyContent="center" alignItems="flex-start" >
+              
+              <Typography align="center"  variant='h4'>Edit Seed Info</Typography> 
+              
+            </Grid>
+
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-                <Typography>Name:</Typography>
+                <Typography variant="h6">Name:</Typography>
               </Grid>
               <Grid item>
                   <TextField  value = {seedInfo.name} onChange = { (event)=>setSeedInfo ({...seedInfo , name: event.target.value})} />
@@ -117,7 +123,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-              <Typography>Catagory:</Typography>
+              <Typography variant="h6">Catagory:</Typography>
               </Grid>
               <Grid item>
                 <Select
@@ -136,7 +142,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-                <Typography>Quantiny:</Typography>
+                <Typography variant="h6">Quantiny:</Typography>
               </Grid>
               <Grid item>
                   <TextField  value = {seedInfo.quantity} onChange = { (event)=>setSeedInfo ({...seedInfo , quantity: event.target.value})} />
@@ -145,7 +151,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-                <Typography>Sow Date:</Typography>
+                <Typography variant="h6">Sow Date:</Typography>
               </Grid>
               <Grid item>
                   <TextField  value = {seedInfo.sow_date} onChange = { (event)=>setSeedInfo ({...seedInfo , sow_date: event.target.value})} />
@@ -154,7 +160,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-                <Typography>Direct sow:</Typography>
+                <Typography variant="h6">Direct sow:</Typography>
               </Grid>
               <Grid item>
                   <Checkbox
@@ -168,7 +174,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2}  alignItems="center" >
               <Grid item>
-                <Typography>Current Year Seed:</Typography>
+                <Typography variant="h6">Current Year Seed:</Typography>
               </Grid>
               <Grid item>
                 <Checkbox
@@ -182,19 +188,19 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-                <Typography>Source:</Typography>
+                <Typography variant="h6">Source:</Typography>
               </Grid>
               <Grid item>
                   <TextField  value = {seedInfo.source} onChange = { (event)=>setSeedInfo ({...seedInfo , source: event.target.value})} />
               </Grid>
             </Grid>
 
-            <Grid item xs container spacing={2} alignItems="center" >
+            <Grid item xs container spacing={2} alignItems="flex-start" >
               <Grid item>
-                <Typography>Notes:</Typography>
+                <Typography variant="h6">Notes:</Typography>
               </Grid>
               <Grid item>
-                  <TextField  value = {seedInfo.notes} onChange = { (event)=>setSeedInfo ({...seedInfo , notes: event.target.value})} />
+                  <TextField  value = {seedInfo.notes} variant= "outlined" multiline rows={6} onChange = { (event)=>setSeedInfo ({...seedInfo , notes: event.target.value})} />
               </Grid>
             </Grid>
 
@@ -230,7 +236,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-              <Typography>Catagory:</Typography>
+              <Typography variant="h6">Catagory:</Typography>
               </Grid>
               <Grid item>
               {seedInfo.catagory}
@@ -239,7 +245,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-                <Typography>Quantiny:</Typography>
+                <Typography variant="h6">Quantiny:</Typography>
               </Grid>
               <Grid item>
               {seedInfo.quantity}
@@ -248,7 +254,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-                <Typography>Sow Date:</Typography>
+                <Typography variant="h6">Sow Date:</Typography>
               </Grid>
               <Grid item>
               {seedInfo.sow_date}
@@ -257,7 +263,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-                <Typography>Direct sow:</Typography>
+                <Typography variant="h6">Direct sow:</Typography>
               </Grid>
               <Grid item>
               <Checkbox
@@ -270,7 +276,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2}  alignItems="center" >
               <Grid item>
-                <Typography>Current Year Seed:</Typography>
+                <Typography variant="h6">Current Year Seed:</Typography>
               </Grid>
               <Grid item>
               <Checkbox
@@ -283,7 +289,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-                <Typography>Source:</Typography>
+                <Typography variant="h6">Source:</Typography>
               </Grid>
               <Grid item>
               {seedInfo.source}
@@ -292,7 +298,7 @@ useLayoutEffect(() => {
 
             <Grid item xs container spacing={2} alignItems="center" >
               <Grid item>
-                <Typography>Notes:</Typography>
+                <Typography variant="h6">Notes:</Typography>
               </Grid>
               <Grid item>
               {seedInfo.notes}
@@ -307,7 +313,7 @@ useLayoutEffect(() => {
             </Grid>
         </Grid>
           <Grid item >
-            <img src={seedInfo.path}/>
+            <img src={seedInfo.path} alt={seedInfo.catagory}/>
             
             
           </Grid>

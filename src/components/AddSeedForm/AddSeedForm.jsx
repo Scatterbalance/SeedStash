@@ -141,21 +141,21 @@ const [required,setRequired]=useState(false);
               </Grid>
             </Grid>
 
-            <Grid item xs container spacing={2} alignItems="center" >
+            <Grid item xs container spacing={2} alignItems="flex-start" >
               <Grid item>
                 <Typography>Notes:</Typography>
               </Grid>
               <Grid item>
-                  <TextField  value = {newSeed.notes} onChange = { (event)=>setNewSeed ({...newSeed , notes: event.target.value})} />
+                  <TextField  value = {newSeed.notes} variant= "outlined" multiline rows={6} onChange = { (event)=>setNewSeed ({...newSeed , notes: event.target.value})} />
               </Grid>
             </Grid>
 
             <Grid item xs container spacing={2} alignItems="center"  >
               <Grid item>
-              <Button variant="contained" onClick={()=>{history.goBack()}} >Cancel</Button>
+              <Button variant="contained" color="primary" onClick={()=>{history.goBack()}} >Cancel</Button>
               </Grid>
               <Grid item>
-              <Button variant="contained" onClick= {()=>{dispatch({type:"ADD_INVENTORY" ,payload:newSeed}); history.goBack();}}>Submit</Button>
+              <Button variant="contained" color="primary" onClick= {()=>{dispatch({type:"ADD_INVENTORY" ,payload:newSeed}); history.goBack();}}>Submit</Button>
               </Grid>
             </Grid>
         </Grid>
